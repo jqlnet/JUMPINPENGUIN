@@ -9,6 +9,7 @@ WASD and Jump
 Objective -----------------------
 
 Reach the top using platforms, walljumps, wallbounces, and wallslides. You must collect all 9 sky crystals in order to fulfill the penguin's dream of being able to fly.
+Your stamina bar is your lifeline. Once you run out, your character will collapse from exhaustion, rendering you immobile. Collect sky crystals to replenish your energy.
 
 
 The game contains all of the following elements:
