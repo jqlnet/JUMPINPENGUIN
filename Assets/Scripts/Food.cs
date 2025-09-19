@@ -18,5 +18,6 @@ public class Food : MonoBehaviour
         {
             Debug.LogWarning("Food: collided object tagged Player but no PlayerMovement component found on " + collision.name);
         }
+
     }
 }

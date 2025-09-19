@@ -277,4 +277,11 @@ public class PlayerMovement : MonoBehaviour
         Stamina = value;
     }
 
+    public int GetFood()
+    {
+        // debug
+        Debug.Log("Food collected: " + foodsCollected);
+        return foodsCollected;
+    }
+
 }
