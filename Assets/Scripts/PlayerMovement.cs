@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogWarning("Difficulty.Instance is null, using default staminaDrainRate!");
 
-            staminaDrainRate = 8f; 
+            staminaDrainRate = 8f;
         }
         // first checks if player is at zero stamina and hasnt died yet.
         if (Stamina == 0 && !dead)
@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false; // freezes controller
     }
 
-    private void HandleDeath()
+    public void HandleDeath()
     {
         dead = true;
         anim.SetTrigger("dead");                    // Play death animation
@@ -263,6 +263,18 @@ public class PlayerMovement : MonoBehaviour
         foodsCollected = 0;
         Stamina = MaxStamina;
         // Reset other critical flags and positions as needed
+    }
+
+    // Get stamina value for UI or other purposes
+    public float GetStamina()
+    {
+        return Stamina;
+    }
+
+    // Set stamina value for external scripts (e.g., Spike). Kept simple as requested.
+    public void SetStamina(float value)
+    {
+        Stamina = value;
     }
 
 }

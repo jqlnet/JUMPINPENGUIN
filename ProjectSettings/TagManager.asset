@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,12 @@ TagManager:
   - name: Player
     uniqueID: 2057680111
     locked: 0
+  - name: Wall
+    uniqueID: 2043990711
+    locked: 0
   - name: Ground
     uniqueID: 1250057985
+    locked: 0
+  - name: Spike
+    uniqueID: 1706827625
     locked: 0
