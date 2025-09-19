@@ -36,22 +36,29 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 startScale;
     private bool dead;
     public int foodsCollected = 0;
-    public AudioSource Bgm;
 
 
     private void Awake()
     {
-        //Grabs references for rigidbody and animator from game object.
+
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         startScale = transform.localScale;
-        Bgm.Play();
     }
     private void Update()
     {
         // adjusts stamina drain rate according to the difficulty of the game.
-        staminaDrainRate = Difficulty.Instance.staminaDrainRate;
+        if (Difficulty.Instance != null)
+        {
+            staminaDrainRate = Difficulty.Instance.staminaDrainRate;
+        }
+        else
+        {
+            Debug.LogWarning("Difficulty.Instance is null, using default staminaDrainRate!");
+
+            staminaDrainRate = 8f; 
+        }
         // first checks if player is at zero stamina and hasnt died yet.
         if (Stamina == 0 && !dead)
         {
@@ -135,20 +142,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 isWallSliding = true;
                 body.velocity = new Vector2(body.velocity.x, wallSlideSpeed);
-                // Optionally:
-                // anim.SetBool("wallSliding", true);
             }
             else
             {
                 isWallSliding = false;
-                // anim.SetBool("wallSliding", false);
             }
         }
         else
         {
             wallHangTimer = 0f;
             isWallSliding = false;
-            // anim.SetBool("wallSliding", false);
         }
     }
     private void Jump()
@@ -253,4 +256,13 @@ public class PlayerMovement : MonoBehaviour
             gameOverScreen.gameLost();
         }
     }
+
+    public void ResetState()
+    {
+        dead = false;
+        foodsCollected = 0;
+        Stamina = MaxStamina;
+        // Reset other critical flags and positions as needed
+    }
+
 }

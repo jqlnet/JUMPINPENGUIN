@@ -12,6 +12,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(1);
     }
     
