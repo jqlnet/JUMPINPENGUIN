@@ -283,7 +283,4 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Food collected: " + foodsCollected);
         return foodsCollected;
     }
-
-    
-
 }
