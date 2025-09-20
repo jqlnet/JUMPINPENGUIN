@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
     private bool dead;
     public int foodsCollected = 0;
 
-
     private void Awake()
     {
 
