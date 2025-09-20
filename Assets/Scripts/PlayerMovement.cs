@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
         // first checks if player is at zero stamina and hasnt died yet.
         if (Stamina == 0 && !dead)
-        {
+        { // cannot delay death in case of falling into spikes
             HandleDeath();
         }
 
@@ -114,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
-
 
         if (wallJumpCooldown > 0.2f)
         {
@@ -227,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
             VictoryScreen.gameWon();
             aStaminaBar.gameObject.SetActive(false);
         }
-
+        Stamina = MaxStamina;
         body.velocity = Vector2.zero; // stops movement
         GetComponent<PlayerMovement>().enabled = false; // freezes controller
     }
@@ -246,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator ShowGameOverWithDelay()
     {
-        yield return new WaitForSeconds(3f); //  3 second delay 
+        yield return new WaitForSeconds(2f); //  2 second delay
         if (gameOverScreen != null)
         {
             gameOverScreen.gameLost();
@@ -258,16 +257,13 @@ public class PlayerMovement : MonoBehaviour
         dead = false;
         foodsCollected = 0;
         Stamina = MaxStamina;
-        // Reset other critical flags and positions as needed
     }
 
-    // Get stamina value for UI or other purposes
     public float GetStamina()
     {
         return Stamina;
     }
 
-    // Set stamina value for external scripts (e.g., Spike). Kept simple as requested.
     public void SetStamina(float value)
     {
         Stamina = value;
