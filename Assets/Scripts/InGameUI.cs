@@ -1,19 +1,13 @@
 using UnityEngine;
-using TMPro;
+using TMPro; 
 
 public class InGameUI : MonoBehaviour
 {
     public TextMeshProUGUI foodText;
-
     [SerializeField] PlayerMovement player;
 
-    private void Start()
+    void Update()
     {
-        foodText.text = "Gems Collected: " + player.foodsCollected;
-    }
-
-    private void Update()
-    {
-        foodText.text = "Gems Collected: " + player.foodsCollected;
+        foodText.text = ": " + player.foodsCollected.ToString();
     }
 }

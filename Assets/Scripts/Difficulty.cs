@@ -5,28 +5,27 @@ public class Difficulty : MonoBehaviour
     public static Difficulty Instance;
 
     public float staminaDrainRate = 8f;
-    public GameObject difficultyPanel; // assign your panel in the inspector
+    public GameObject difficultyPanel;
     public GameObject staminaBar;
-    public PlayerMovement playerMovement; // assign this in the inspector
+    public PlayerMovement playerMovement;
+    public GameObject inGameUI;
 
     private void Awake()
     {
-        // Setup singleton but allow re-init on scene restart
         if (Instance == null)
         {
             Instance = this;
         }
         else if (Instance != this)
         {
-            Instance = this; // Reset the static instance for new scene
+            Instance = this;
         }
 
-        ShowDifficultyPanel(); // Always disable movement on awake
+        ShowDifficultyPanel();
     }
 
     public void ShowDifficultyPanel()
     {
-        // Show selection, disable player movement until a pick
         if (difficultyPanel != null)
             difficultyPanel.SetActive(true);
 
@@ -35,6 +34,9 @@ public class Difficulty : MonoBehaviour
 
         if (playerMovement != null)
             playerMovement.enabled = false;
+
+        if (inGameUI != null)
+            inGameUI.SetActive(false);
         else
             Debug.LogError("Difficulty: playerMovement missing from inspector!");
     }
@@ -59,7 +61,6 @@ public class Difficulty : MonoBehaviour
 
     private void HideDifficultyPanel()
     {
-        // Hide selection, enable stamina bar and movement
         if (difficultyPanel != null)
             difficultyPanel.SetActive(false);
 
@@ -68,6 +69,9 @@ public class Difficulty : MonoBehaviour
 
         if (playerMovement != null)
             playerMovement.enabled = true;
+
+        if (inGameUI != null)
+            inGameUI.SetActive(true);
         else
             Debug.LogError("Difficulty: playerMovement missing from inspector!");
     }
