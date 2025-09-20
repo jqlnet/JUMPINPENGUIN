@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private VictoryScreen VictoryScreen;
     [SerializeField] private Difficulty Difficulty;
 
-
     private float staminaImmunityTimer = 0f;
     private bool staminaImmunityActive = false;
     private bool immunityCountdownStarted = false;
