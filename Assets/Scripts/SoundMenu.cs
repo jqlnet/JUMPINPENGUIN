@@ -7,28 +7,20 @@ public class SoundMenuController : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioSource musicSource;
 
-public void OpenSoundSettings()
-{
+public void OpenSoundSettings() {
     soundMenuPanel.SetActive(true);
-
     volumeSlider = soundMenuPanel.GetComponentInChildren<Slider>();
-    if (volumeSlider == null)
-    {
+    if (volumeSlider == null) {
         Debug.LogError("Volume Slider not found in SoundMenuPanel!");
         return;
     }
     volumeSlider.onValueChanged.RemoveAllListeners();
     volumeSlider.onValueChanged.AddListener(SetVolume);
 
-    // Always load slider from PlayerPrefs
-    volumeSlider.value = PlayerPrefs.GetFloat("soundVolume", 1f);
-
-    // And update music volume accordingly
-    if (musicSource != null)
-        musicSource.volume = volumeSlider.value;
+    float saved = PlayerPrefs.GetFloat("soundVolume", 1f);
+    volumeSlider.value = saved;
+    if (musicSource != null) musicSource.volume = saved;
 }
-
-
 
 void Awake()
 {
