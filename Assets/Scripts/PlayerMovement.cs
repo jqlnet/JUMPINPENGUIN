@@ -45,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+
+        if (foodsCollected == 10)
+        {
+            WinGame();
+        }
+        
         // adjusts stamina drain rate according to the difficulty of the game.
         staminaDrainRate = Difficulty.staminaDrainRate;
         // first checks if player is at zero stamina and hasnt died yet.
@@ -205,10 +211,6 @@ public class PlayerMovement : MonoBehaviour
     public void AddFood()
     {
         foodsCollected++;
-        if (foodsCollected == 10)
-        {
-            WinGame();
-        }
     }
 
     private void WinGame()
