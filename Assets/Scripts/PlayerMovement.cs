@@ -216,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (VictoryScreen != null)
         {
-            StartCoroutine(VictoryScreen.GameWon());
+            VictoryScreen.gameWon();
             aStaminaBar.gameObject.SetActive(false);
         }
         Stamina = MaxStamina;
