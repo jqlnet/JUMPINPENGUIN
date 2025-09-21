@@ -2628,7 +2628,6 @@ GameObject:
   - component: {fileID: 981793653}
   - component: {fileID: 981793652}
   - component: {fileID: 981793651}
-  - component: {fileID: 981793654}
   m_Layer: 5
   m_Name: SoundSettings
   m_TagString: Untagged
@@ -2751,20 +2750,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981793649}
   m_CullTransparentMesh: 1
---- !u!114 &981793654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981793649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7998f81590a905e49b8e0bcc6570398b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundSlider: {fileID: 1813753095}
-  backgroundAudio: {fileID: 62502682}
 --- !u!1 &1272598141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3452,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2037708089}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: SaveSoundSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1467895368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3904,7 +3901,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 981793654}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: SaveSoundSettings
         m_Mode: 1
@@ -3915,7 +3912,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!114 &1644236521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4045,10 +4042,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 981793654}
+      - m_Target: {fileID: 2037708089}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: UpdateSound
-        m_Mode: 1
+        m_MethodName: OnSliderChange
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4406,6 +4403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2037708087}
   - component: {fileID: 2037708088}
+  - component: {fileID: 2037708089}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -4445,6 +4443,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuPanel: {fileID: 0}
+--- !u!114 &2037708089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037708086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7998f81590a905e49b8e0bcc6570398b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundSlider: {fileID: 1813753095}
+  backgroundAudio: {fileID: 62502682}
 --- !u!1 &2060354708
 GameObject:
   m_ObjectHideFlags: 0

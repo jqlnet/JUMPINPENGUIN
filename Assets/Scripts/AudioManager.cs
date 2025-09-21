@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +16,31 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource backgroundAudio;
 
+    public static AudioManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     { // check to see if its first playthrough
         firstPlayInt = PlayerPrefs.GetInt(firstPlay);
+
+        backgroundSlider.onValueChanged.AddListener(OnSliderChange);
+
+        // notes for the future on audio initialization
+        //Start() or initialization logic in AudioManager
+        //sets both backgroundSlider.value and backgroundAudio.volume to the saved PlayerPrefs value at launch.
+        // this is bad so we need to make sure the listener is selecting the sliderchange over the default bgm.volume
 
         if (firstPlayInt == 0)
         {
@@ -54,7 +77,11 @@ public class AudioManager : MonoBehaviour
     {
         backgroundAudio.volume = backgroundSlider.value;
     }
-
-
-
+    public void OnSliderChange(float value)
+    {
+        Debug.Log(value);
+        AudioManager.Instance.backgroundAudio.volume = value;
+        PlayerPrefs.SetFloat("BackgroundPref", value);
+        PlayerPrefs.Save();
+    }
 }

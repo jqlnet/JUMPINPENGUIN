@@ -18,11 +18,4 @@ public class AudioSettings : MonoBehaviour
 
         backgroundAudio.volume = backgroundFloat;
     }
-
-    public void OnSliderChange(float value)
-    {
-        backgroundAudio.volume = value;
-        PlayerPrefs.SetFloat("BackgroundPref", value);
-        PlayerPrefs.Save();
-    }
 }
