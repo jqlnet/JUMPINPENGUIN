@@ -15,10 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject aStaminaBar;
     [SerializeField] private float MaxStamina;
     [SerializeField] private float Stamina;
-    [SerializeField] private float staminaDrainRate;// difficulty.cs 
+    [SerializeField] private float staminaDrainRate = Difficulty.staminaDrainRate;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private VictoryScreen VictoryScreen;
     [SerializeField] private Difficulty Difficulty;
+    [SerializeField] private DifficultyCheck dCheck;
 
     private float staminaImmunityTimer = 0f;
     private bool staminaImmunityActive = false;
@@ -45,16 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // adjusts stamina drain rate according to the difficulty of the game.
-        if (Difficulty.Instance != null)
-        {
-            staminaDrainRate = Difficulty.Instance.staminaDrainRate;
-        }
-        else
-        {
-            Debug.LogWarning("Difficulty.Instance is null, using default staminaDrainRate!");
-
-            staminaDrainRate = 8f;
-        }
+        staminaDrainRate = Difficulty.staminaDrainRate;
         // first checks if player is at zero stamina and hasnt died yet.
         if (Stamina == 0 && !dead)
         { // cannot delay death in case of falling into spikes
