@@ -18,10 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float staminaDrainRate = Difficulty.staminaDrainRate;
     [SerializeField] private GameOverScreen gameOverScreen;
     [SerializeField] private VictoryScreen VictoryScreen;
-    [SerializeField] private Difficulty Difficulty;
-    [SerializeField] private DifficultyCheck dCheck;
     [SerializeField] private InGameUI inGameUI;
-    [SerializeField] private VictoryScreen victoryScreen;
+    [SerializeField] private AudioSource jumpAudioSource;
 
     private float staminaImmunityTimer = 0f;
     private bool staminaImmunityActive = false;
@@ -159,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("grounded", false);
             anim.SetTrigger("jump");
             isJumping = true;
+            jumpAudioSource.Play();
         }
         else if (onWall() && !isGrounded())
         {
@@ -175,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("grounded", false);
             anim.SetTrigger("jump"); // <-- Play jump animation on wall jump
             isJumping = true;
+            jumpAudioSource.Play();
             // x force away from wall, y force up the wall.
             // it pushes away from the wall, then it uses another force to go up, before the user inputs a direction again, which can 
             // be going up to the wall once more. For the opposite direction, we just reverse the forces. 
