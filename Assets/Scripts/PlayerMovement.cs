@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private VictoryScreen VictoryScreen;
     [SerializeField] private Difficulty Difficulty;
     [SerializeField] private DifficultyCheck dCheck;
+    [SerializeField] private InGameUI inGameUI;
+    [SerializeField] private VictoryScreen victoryScreen;
 
     private float staminaImmunityTimer = 0f;
     private bool staminaImmunityActive = false;
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         {
             WinGame();
         }
-        
+
         // adjusts stamina drain rate according to the difficulty of the game.
         staminaDrainRate = Difficulty.staminaDrainRate;
         // first checks if player is at zero stamina and hasnt died yet.
@@ -179,9 +181,6 @@ public class PlayerMovement : MonoBehaviour
             // mathf.sign returns either -1 or +1 depending on direction of player. 
             // the - in front of the Mathf pushes it in opposite direction aka pushes away from wall.
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
     }
     private bool isGrounded()
     {

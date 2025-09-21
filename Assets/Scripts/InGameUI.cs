@@ -12,7 +12,6 @@ public class InGameUI : MonoBehaviour
 
     void Update()
     {
-        // Only start once any key (or specific game movement key) is pressed
         if (!timerStarted && (
             Input.anyKeyDown ||
             Input.GetAxisRaw("Horizontal") != 0 ||
@@ -32,5 +31,10 @@ public class InGameUI : MonoBehaviour
         }
 
         foodText.text = ": " + player.foodsCollected.ToString() + " / 10";
+    }
+
+    public float getTimer()
+    {
+        return timer;
     }
 }

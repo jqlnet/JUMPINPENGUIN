@@ -1,17 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class VictoryScreen : MonoBehaviour
 
 
 {
     public GameObject inGameUI;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI difficultyText;
     public void gameWon()
     {
         inGameUI.SetActive(false);
         gameObject.SetActive(true);
+
+        float completionTime = inGameUI.GetComponent<InGameUI>().getTimer();
+
+        int minutes = Mathf.FloorToInt(completionTime / 60f);
+        int seconds = Mathf.FloorToInt(completionTime % 60f);
+        int milliseconds = Mathf.FloorToInt((completionTime * 1000f) % 1000f);
+        timeText.text = $"{minutes:D2}:{seconds:D2}:{milliseconds:D3}";
+
+        float rate = Difficulty.staminaDrainRate;
+        string name = "Medium";
+        if (rate == 5f) name = "Easy";
+        else if (rate == 10f) name = "Hard";
+        difficultyText.text = name;
     }
 
     public void Restart()
@@ -19,8 +34,8 @@ public class VictoryScreen : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(1);
     }
-    
-        public void MainMenu()
+
+    public void MainMenu()
     {
         SceneManager.LoadSceneAsync(0);
     }
