@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddFood()
     {
         foodsCollected++;
-        if (foodsCollected >= 9)
+        if (foodsCollected == 10)
         {
             WinGame();
         }
