@@ -16,11 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource backgroundAudio;
 
     void Start()
-    {
-
-        float savedVolume = PlayerPrefs.GetFloat("BackgroundPref", 0.5f);
-        backgroundAudio.volume = savedVolume;
-        // check to see if its first playthrough
+    { // check to see if its first playthrough
         firstPlayInt = PlayerPrefs.GetInt(firstPlay);
 
         if (firstPlayInt == 0)
@@ -36,7 +32,8 @@ public class AudioManager : MonoBehaviour
             backgroundSlider.value = backgroundFloat;
         }
 
-
+        float savedVolume = PlayerPrefs.GetFloat("BackgroundPref", 0.5f);
+        backgroundAudio.volume = savedVolume;
     }
 
     public void SaveSoundSettings()
