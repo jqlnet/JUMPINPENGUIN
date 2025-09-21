@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
+using System.Collections;
+
 
 public class VictoryScreen : MonoBehaviour
 
@@ -10,12 +13,16 @@ public class VictoryScreen : MonoBehaviour
     public GameObject inGameUI;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI difficultyText;
-    public void gameWon()
+
+    public Leaderboard leaderboard;
+public IEnumerator GameWon()
     {
         inGameUI.SetActive(false);
         gameObject.SetActive(true);
 
         float completionTime = inGameUI.GetComponent<InGameUI>().getTimer();
+        int score = (int)(completionTime * 1000f);
+        yield return leaderboard.SubmitScoreRoutine(score);
 
         int minutes = Mathf.FloorToInt(completionTime / 60f);
         int seconds = Mathf.FloorToInt(completionTime % 60f);
